@@ -1,47 +1,17 @@
 # 成何体统 · 个人学习路径
 
-这是一个部署在 Cloudflare Pages 的零构建静态个人学习路径网站，主题为“成何体统”。站点保留博客式布局、最新文章、分类、检索和评论能力，但默认不预设与你无关的内容。
+## 中文
 
-## 功能
+这是一个用于记录个人计算机学习路径的静态网站。
 
-- 学习路径展示
-- 最新笔记列表
-- 分类和标签自动统计
-- 模糊检索
-- 本地评论区
-- Utterances 公开评论入口
-- 响应式布局
-- 自定义背景图 `assets/site-background.jpg`
-- Cloudflare Pages `_headers` 安全响应头
+站点的核心目标是把长期学习过程整理成可追踪的结构：学习路径、阶段笔记、分类归档、检索入口和反馈评论。它不是资料堆叠页，也不是预设内容博客，而是一个可以随着学习推进持续补充的个人知识空间。
 
-## 本地预览
+“成何体统”代表这个站点的基本取向：把零散输入整理成体系，把阶段经验沉淀成笔记，把问题排查和项目实践转化为可复盘的记录。
 
-```powershell
-python -m http.server 8788
-```
+## English
 
-然后访问 `http://localhost:8788`。
+This is a static website for documenting a personal computer science learning path.
 
-## Cloudflare Pages 设置
+Its purpose is to turn long-term learning into a traceable structure: learning paths, study notes, category archives, search, and feedback. It is not a generic content blog with preset articles, but a personal knowledge space that can grow as learning continues.
 
-- Framework preset: `None`
-- Build command: 留空
-- Build output directory: `/`
-- Root directory: 仓库根目录
-
-## 内容维护
-
-打开 `script.js`：
-
-- 在 `learningPaths` 数组中添加学习路径。
-- 在 `posts` 数组中添加学习笔记。
-- 分类、最新文章、标签和检索结果会自动生成。
-
-## 评论说明
-
-站点已加入两层评论能力：
-
-- 公开评论：使用 Utterances，基于 GitHub Issues。需要在 GitHub 安装 utterances app，并授权 `Cherish-ChenRH/Person-Space` 仓库。
-- 本地备忘：使用浏览器 `localStorage`，只保存在当前访问者自己的浏览器里。
-
-如果后续需要完全自建评论接口，可以升级到 Cloudflare Pages Functions + D1。
+The name “成何体统” reflects the site's direction: organizing scattered inputs into structure, turning learning stages into notes, and preserving debugging or project experience as reviewable records.
