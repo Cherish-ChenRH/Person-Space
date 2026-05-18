@@ -3,182 +3,145 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="成何体统：一个面向计算机技术学习、工程实践、源码阅读和系统复盘的个人技术网站。">
-    <meta name="theme-color" content="#10130f">
-    <title>成何体统 · 计算机技术札记</title>
+    <meta name="description" content="成何体统：记录个人计算机学习路径、阶段笔记、分类归档和复盘的个人站点。">
+    <meta name="theme-color" content="#eef1ff">
+    <title>成何体统 · 个人学习路径</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="返回首页">
-        <span class="brand-mark">统</span>
-        <span>成何体统</span>
-      </a>
-      <nav class="nav" aria-label="主导航">
-        <a href="#articles">文章</a>
-        <a href="#systems">体系</a>
-        <a href="#lab">实验</a>
-        <a href="#comments">评论</a>
+    <header class="topbar">
+      <nav class="topnav" aria-label="主导航">
+        <a class="avatar-mini" href="#top" aria-label="回到首页">统</a>
+        <a href="#top">主页</a>
+        <a href="#paths">路径</a>
+        <a href="#latest">最新</a>
+        <a href="#categories">分类</a>
+        <a href="#about">关于</a>
       </nav>
+      <button class="search-trigger" id="searchTrigger" type="button" aria-label="打开搜索">⌕</button>
     </header>
 
-    <main id="top" class="page-shell">
-      <aside class="toc-card" aria-label="页面目录">
-        <p class="eyebrow">目录</p>
-        <nav id="toc" class="toc"></nav>
+    <main id="top" class="blog-shell">
+      <aside class="left-rail">
+        <section class="profile-card card" id="about">
+          <div class="avatar-large">成</div>
+          <h1>成何体统</h1>
+          <p>这里用来记录我的计算机学习路径、阶段笔记、问题复盘和长期积累。</p>
+          <div class="profile-location">Personal Learning Space</div>
+          <div class="profile-stats">
+            <div><strong id="postCount">0</strong><span>笔记</span></div>
+            <div><strong id="pathCount">0</strong><span>路径</span></div>
+            <div><strong id="categoryCount">0</strong><span>分类</span></div>
+          </div>
+          <a class="follow-button" href="#edit-guide">如何添加内容</a>
+        </section>
+
+        <section class="link-card card">
+          <h2>站点说明</h2>
+          <ul>
+            <li><a href="#paths">学习路径</a><span>roadmap</span></li>
+            <li><a href="#latest">最新笔记</a><span>notes</span></li>
+            <li><a href="#categories">分类归档</a><span>index</span></li>
+            <li><a href="#comments">评论反馈</a><span>feedback</span></li>
+          </ul>
+        </section>
       </aside>
 
-      <div class="content-flow">
-        <section class="hero section" data-toc="开篇">
-          <div class="hero-copy reveal">
-            <p class="eyebrow">Computer systems, written with order</p>
-            <h1>学计算机，先问一句：成何体统？</h1>
-            <p class="hero-text">
-              这里不是资料收藏夹，而是一个计算机技术站点：记录系统化学习、工程实践、源码阅读、问题排查和复盘。主题叫“成何体统”，意思是把零散知识收束成结构，把模糊经验压成可复用方法。
-            </p>
-            <div class="hero-actions">
-              <a class="button primary" href="#articles">检索文章</a>
-              <a class="button secondary" href="#comments">留下评论</a>
-            </div>
-          </div>
-          <aside class="hero-panel reveal" aria-label="站点状态">
-            <div class="seal">体系先行</div>
-            <div class="panel-top">
-              <span>当前主线</span>
-              <strong>Web 工程 / 计算机基础 / 部署运维</strong>
-            </div>
-            <div class="metric-grid">
-              <div>
-                <strong id="articleCount">0</strong>
-                <span>技术文章</span>
-              </div>
-              <div>
-                <strong>5</strong>
-                <span>知识体系</span>
-              </div>
-              <div>
-                <strong>∞</strong>
-                <span>持续复盘</span>
-              </div>
-            </div>
-            <div class="terminal-card">
-              <span>$ why</span>
-              <p>把“会一点”推进到“说得清、写得出、调得动、扛得住”。</p>
-            </div>
-          </aside>
-        </section>
-
-        <section id="articles" class="section" data-toc="文章检索">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Index</p>
-            <h2>技术文章</h2>
-            <p>支持标题、摘要、标签、分类的模糊检索。输入拼音片段、英文关键字或中文词都可以命中相关内容。</p>
-          </div>
-
-          <div class="toolbar reveal">
-            <label class="search-box">
-              <span>模糊检索</span>
-              <input id="searchInput" type="search" placeholder="例如：cloudflare、算法、http、缓存、部署">
-            </label>
-            <div class="filters" id="filters" aria-label="文章分类筛选"></div>
-          </div>
-
-          <div class="article-layout">
-            <div class="article-list" id="articleList" aria-label="文章列表"></div>
-            <article class="reader-card" id="reader" aria-live="polite"></article>
+      <section class="main-column">
+        <section class="hero-card card">
+          <p class="eyebrow">Personal learning path</p>
+          <h1>把学习路径写清楚，再慢慢把内容填进去。</h1>
+          <p>
+            这个站点现在保留结构，不预设与你无关的文章内容。后续你只需要在 `script.js` 里添加学习路径、笔记和分类，页面会自动渲染最新文章、分类计数和检索结果。
+          </p>
+          <div class="hero-actions">
+            <a href="#paths">查看路径</a>
+            <a href="#edit-guide">添加内容</a>
           </div>
         </section>
 
-        <section id="systems" class="section manifesto reveal" data-toc="知识体系">
-          <div>
-            <p class="eyebrow">Systems</p>
-            <h2>计算机技术的体统</h2>
-            <p>学习顺序按“基础机制 -> 工程实现 -> 运行维护 -> 复盘沉淀”组织，避免只追框架和教程。</p>
+        <section class="path-card card" id="paths">
+          <div class="section-title">
+            <h2>学习路径</h2>
+            <p>用于记录阶段目标、当前进度和下一步计划。当前没有预设路径，后续由你自己添加。</p>
           </div>
-          <div class="principles">
-            <article>
-              <span>01</span>
-              <h3>计算机基础</h3>
-              <p>数据结构、操作系统、网络、数据库，决定排查问题的下限。</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Web 工程</h3>
-              <p>HTML/CSS/JS、构建、性能、可访问性和发布链路。</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>工程复盘</h3>
-              <p>把故障、决策和权衡写清楚，形成下一次能复用的判断依据。</p>
-            </article>
-          </div>
+          <div id="pathList" class="path-list"></div>
         </section>
 
-        <section id="lab" class="section lab" data-toc="实验室">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Lab</p>
-            <h2>实践实验室</h2>
-            <p>站点会优先沉淀这些方向的实验记录，保证文章不是空谈。</p>
+        <section class="post-feed" id="latest" aria-label="最新笔记">
+          <div class="section-title">
+            <h2>最新笔记</h2>
+            <p>这里会显示你后续添加的学习笔记、复盘和技术记录。</p>
           </div>
-          <div class="lab-grid">
-            <article class="lab-card reveal">
-              <span class="status">已上线</span>
-              <h3>Cloudflare Pages 静态站</h3>
-              <p>验证 GitHub 推送、Pages 构建、自定义域名、缓存头和 404 页面。</p>
-            </article>
-            <article class="lab-card reveal">
-              <span class="status">进行中</span>
-              <h3>前端性能基线</h3>
-              <p>记录首屏、字体、图片、缓存和可访问性检查项。</p>
-            </article>
-            <article class="lab-card reveal">
-              <span class="status">计划中</span>
-              <h3>算法题解索引</h3>
-              <p>按题型整理模板、反例、复杂度和错题复盘。</p>
-            </article>
-          </div>
+          <div id="postList"></div>
         </section>
 
-        <section id="comments" class="section comments-section" data-toc="评论区">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Comments</p>
-            <h2>评论与反馈</h2>
-            <p>评论区优先使用 GitHub Issues 驱动的共享评论；如果 GitHub 评论暂未启用，也可以先用本地评论验证交互。</p>
-          </div>
-          <div class="shared-comments reveal">
-            <h3>公开评论</h3>
-            <p>如果这里提示需要安装应用，请到 GitHub 安装 utterances app，并授权 `Cherish-ChenRH/Person-Space` 仓库。</p>
-            <script src="https://utteranc.es/client.js"
-              repo="Cherish-ChenRH/Person-Space"
-              issue-term="pathname"
-              label="comment"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-            </script>
-          </div>
-          <form class="comment-form reveal" id="commentForm">
+        <section class="guide-card card" id="edit-guide">
+          <h2>如何添加内容</h2>
+          <p>打开 `script.js`，在 `learningPaths` 中添加学习路径，在 `posts` 中添加笔记。分类、最新文章和检索都会自动更新。</p>
+          <pre><code>learningPaths.push({
+  title: "计算机网络",
+  status: "进行中",
+  progress: 20,
+  next: "整理 HTTP 缓存笔记"
+});</code></pre>
+        </section>
+
+        <section class="comments-card card" id="comments">
+          <h2>评论与反馈</h2>
+          <p>公开评论使用 GitHub Issues 驱动的 Utterances。若提示安装应用，请授权 `Cherish-ChenRH/Person-Space` 仓库。</p>
+          <script src="https://utteranc.es/client.js"
+            repo="Cherish-ChenRH/Person-Space"
+            issue-term="pathname"
+            label="comment"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+          </script>
+          <form class="local-comment" id="commentForm">
             <h3>本地备忘</h3>
-            <label>
-              <span>昵称</span>
-              <input id="commentName" maxlength="24" placeholder="例如：路过的工程师" required>
-            </label>
-            <label>
-              <span>评论</span>
-              <textarea id="commentBody" maxlength="500" placeholder="留下建议、问题或文章选题。" required></textarea>
-            </label>
-            <button class="button primary" type="submit">发布到本地</button>
+            <input id="commentName" maxlength="24" placeholder="昵称" required>
+            <textarea id="commentBody" maxlength="500" placeholder="写下建议、问题或文章选题。" required></textarea>
+            <button type="submit">保存到本地</button>
           </form>
-          <div class="comment-list" id="commentList" aria-live="polite"></div>
+          <div class="comment-list" id="commentList"></div>
         </section>
-      </div>
+      </section>
+
+      <aside class="right-rail">
+        <section class="card side-card">
+          <h2>最新文章</h2>
+          <div id="latestPosts" class="latest-list"></div>
+        </section>
+
+        <section class="card side-card" id="categories">
+          <h2>分类</h2>
+          <div id="categoryList" class="category-list"></div>
+        </section>
+
+        <section class="card side-card">
+          <h2>标签</h2>
+          <div id="tagCloud" class="tag-cloud"></div>
+        </section>
+      </aside>
     </main>
 
+    <div class="search-panel" id="searchPanel" hidden>
+      <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+        <div class="search-head">
+          <h2 id="searchTitle">站内检索</h2>
+          <button id="closeSearch" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <input id="searchInput" type="search" placeholder="搜索后续添加的路径、笔记、分类或标签">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+    </div>
+
     <footer class="footer">
-      <p>© <span id="year"></span> 成何体统 · 计算机技术札记</p>
+      <p>© <span id="year"></span> 成何体统 · 个人学习路径</p>
       <a href="#top">回到顶部</a>
     </footer>
 

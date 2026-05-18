@@ -1,86 +1,19 @@
-const articles = [
-  {
-    id: "cloudflare-pages",
-    title: "Cloudflare Pages 部署链路：从 Git 到域名",
-    category: "部署运维",
-    date: "2026-05-19",
-    summary: "梳理静态站部署、自定义域名、DNS、缓存头和常见 502/代理问题的排查顺序。",
-    tags: ["Cloudflare", "Pages", "DNS", "Deploy"],
-    content: [
-      "部署静态站的关键不是把页面传上去，而是确认 GitHub、Pages 构建、边缘网络、DNS、HTTPS 和浏览器代理这条链路每一段都可验证。",
-      "最小检查顺序：先访问 pages.dev 默认域名，再查自定义域名 DNS，最后看浏览器 Network 里的 Remote Address。如果 Remote Address 是 127.0.0.1，优先排查本机代理。",
-      "Cloudflare Pages 的零构建项目可以使用根目录作为输出目录，同时用 _headers 固化安全头和缓存策略。"
-    ],
-    checklist: ["pages.dev 返回 200", "自定义域名已加入 Pages Custom domains", "DNS 记录已代理或按需灰云测试", "浏览器代理没有劫持域名"]
-  },
-  {
-    id: "frontend-system",
-    title: "前端工程不是会写页面，而是能维持秩序",
-    category: "Web 前端",
-    date: "2026-05-18",
-    summary: "从结构、状态、样式、性能和可访问性五个维度建立前端工程判断框架。",
-    tags: ["HTML", "CSS", "JavaScript", "Frontend"],
-    content: [
-      "页面能显示只是起点。真正的前端工程要回答：结构是否可维护，状态是否可追踪，样式是否可扩展，性能是否可度量，可访问性是否被尊重。",
-      "小站点不必一开始引入重框架，但应该先把数据、渲染、交互和样式边界分开。这样后续接入 CMS、搜索索引或评论系统时不会推倒重来。",
-      "成何体统的前端标准是：看得清、改得动、坏了能定位。"
-    ],
-    checklist: ["语义化 HTML", "响应式布局", "脚本无阻塞加载", "关键交互可键盘操作"]
-  },
-  {
-    id: "fuzzy-search",
-    title: "站内检索：先做可解释的模糊匹配",
-    category: "工程方法",
-    date: "2026-05-17",
-    summary: "不用一上来引入搜索服务，先用本地索引完成标题、摘要、标签和分类的近似匹配。",
-    tags: ["Search", "Index", "UX"],
-    content: [
-      "个人技术站早期内容量不大，本地模糊检索足够有效。重点是把标题、摘要、标签、分类合并成可检索文本，并给连续命中更高分。",
-      "当文章规模增长到数百篇，再考虑 Pagefind、Algolia 或自建索引。过早引入服务会增加维护成本。",
-      "检索结果应该保留分类筛选，因为用户经常不是只找一个词，而是在一个知识域内缩小范围。"
-    ],
-    checklist: ["支持大小写无关", "支持非连续字符命中", "保留分类过滤", "无结果时给出明确反馈"]
-  },
-  {
-    id: "algorithm-notes",
-    title: "算法学习的体统：模板、反例、复杂度",
-    category: "计算机基础",
-    date: "2026-05-16",
-    summary: "算法笔记不只记录答案，更要记录适用条件、反例和复杂度边界。",
-    tags: ["Algorithm", "Data Structure", "Review"],
-    content: [
-      "刷题如果只保留代码，很快会变成重复劳动。高质量算法笔记应该包含题型识别、模板、反例、复杂度和错因。",
-      "例如滑动窗口不是两个指针的机械移动，而是维护一个随边界变化仍然成立的不变量。",
-      "每道错题至少写清楚：错在边界、状态定义、贪心假设，还是复杂度判断。"
-    ],
-    checklist: ["题型识别", "关键不变量", "边界反例", "时间和空间复杂度"]
-  },
-  {
-    id: "debugging",
-    title: "问题排查：别猜，先建立证据链",
-    category: "工程方法",
-    date: "2026-05-15",
-    summary: "从现象、路径、日志、最小复现和回滚策略建立可执行的 Debug 流程。",
-    tags: ["Debug", "Network", "Operations"],
-    content: [
-      "Debug 的第一原则是停止脑补。先确认现象是否稳定，再拆路径：客户端、代理、DNS、CDN、源站、应用、数据。",
-      "每一步只验证一个假设，并记录命令、结果和下一步。这样不会在复杂链路里来回跳。",
-      "当问题影响线上访问时，修复动作必须和回滚动作一起设计。"
-    ],
-    checklist: ["复现条件", "链路拆分", "单变量验证", "回滚方案"]
-  }
-];
+// Add your own learning paths here.
+const learningPaths = [];
 
-const state = {
-  activeCategory: "全部",
-  query: "",
-  selectedArticleId: articles[0].id
-};
+// Add your own notes here. Categories, latest posts, tags and search are generated from this list.
+const posts = [];
 
-const articleList = document.querySelector("#articleList");
-const reader = document.querySelector("#reader");
-const filters = document.querySelector("#filters");
+const pathList = document.querySelector("#pathList");
+const postList = document.querySelector("#postList");
+const latestPosts = document.querySelector("#latestPosts");
+const categoryList = document.querySelector("#categoryList");
+const tagCloud = document.querySelector("#tagCloud");
+const searchPanel = document.querySelector("#searchPanel");
+const searchTrigger = document.querySelector("#searchTrigger");
+const closeSearch = document.querySelector("#closeSearch");
 const searchInput = document.querySelector("#searchInput");
+const searchResults = document.querySelector("#searchResults");
 const commentForm = document.querySelector("#commentForm");
 const commentName = document.querySelector("#commentName");
 const commentBody = document.querySelector("#commentBody");
@@ -111,84 +44,156 @@ function fuzzyScore(text, query) {
   return score;
 }
 
-function articleSearchText(article) {
+function postSearchText(post) {
   return [
-    article.title,
-    article.category,
-    article.summary,
-    article.tags.join(" "),
-    article.content.join(" ")
+    post.title,
+    post.category,
+    post.summary,
+    (post.tags || []).join(" "),
+    post.content || ""
   ].join(" ");
 }
 
-function getVisibleArticles() {
-  return articles
-    .map((article) => ({
-      article,
-      score: fuzzyScore(articleSearchText(article), state.query)
-    }))
-    .filter(({ article, score }) => {
-      const inCategory = state.activeCategory === "全部" || article.category === state.activeCategory;
-      return inCategory && score > 0;
-    })
-    .sort((a, b) => b.score - a.score)
-    .map(({ article }) => article);
+function pathSearchText(path) {
+  return [
+    path.title,
+    path.status,
+    path.next,
+    path.description || ""
+  ].join(" ");
 }
 
-function renderToc() {
-  const toc = document.querySelector("#toc");
-  const sections = [...document.querySelectorAll("[data-toc]")];
-  toc.innerHTML = sections.map((section) => `
-    <a href="#${section.id || "top"}">${section.dataset.toc}</a>
-  `).join("");
+function getCategoryCounts() {
+  return posts.reduce((counts, post) => {
+    counts[post.category] = (counts[post.category] || 0) + 1;
+    return counts;
+  }, {});
 }
 
-function renderFilters() {
-  const categories = ["全部", ...new Set(articles.map((article) => article.category))];
-  filters.innerHTML = categories.map((category) => `
-    <button class="filter ${category === state.activeCategory ? "active" : ""}" type="button" data-category="${category}">
-      ${category}
-    </button>
-  `).join("");
+function getTags() {
+  return [...new Set(posts.flatMap((post) => post.tags || []))];
 }
 
-function renderArticles() {
-  const visibleArticles = getVisibleArticles();
-  if (!visibleArticles.some((article) => article.id === state.selectedArticleId)) {
-    state.selectedArticleId = visibleArticles[0]?.id || null;
-  }
-
-  articleList.innerHTML = visibleArticles.length
-    ? visibleArticles.map((article) => `
-      <button class="article-card ${article.id === state.selectedArticleId ? "active" : ""}" type="button" data-article="${article.id}">
-        <span class="article-meta">${article.category} · ${article.date}</span>
-        <h3>${article.title}</h3>
-        <p>${article.summary}</p>
-        <div class="tag-row">${article.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
-      </button>
+function renderPaths() {
+  pathList.innerHTML = learningPaths.length
+    ? learningPaths.map((path) => `
+      <article class="learning-path">
+        <div>
+          <span>${path.status || "未开始"}</span>
+          <h3>${path.title}</h3>
+          <p>${path.description || ""}</p>
+        </div>
+        <div class="progress" aria-label="${path.title} 进度 ${path.progress || 0}%">
+          <i style="width: ${path.progress || 0}%"></i>
+        </div>
+        <p class="next-step">下一步：${path.next || "待补充"}</p>
+      </article>
     `).join("")
-    : `<p class="empty">没有匹配的文章。可以减少关键词，或换一个分类继续检索。</p>`;
-
-  renderReader();
-  document.querySelector("#articleCount").textContent = String(articles.length);
+    : `<div class="empty-state">
+      <h3>还没有学习路径</h3>
+      <p>后续在 <code>script.js</code> 的 <code>learningPaths</code> 数组中添加你的路径。</p>
+    </div>`;
 }
 
-function renderReader() {
-  const article = articles.find((item) => item.id === state.selectedArticleId);
-  if (!article) {
-    reader.innerHTML = `<p class="empty">请选择一篇文章。</p>`;
-    return;
-  }
+function renderPosts() {
+  postList.innerHTML = posts.length
+    ? posts.map((post) => `
+      <article class="post-card card" id="${post.id}">
+        <div class="post-meta">
+          <span>${post.date || "未设置日期"}</span>
+          <span>${post.category || "未分类"}</span>
+        </div>
+        <h3><a href="#${post.id}">${post.title}</a></h3>
+        <p class="post-excerpt">${post.summary || ""}</p>
+        <div class="tag-row">${(post.tags || []).map((tag) => `<span>${tag}</span>`).join("")}</div>
+      </article>
+    `).join("")
+    : `<article class="post-card card">
+      <div class="empty-state">
+        <h3>还没有笔记</h3>
+        <p>后续在 <code>script.js</code> 的 <code>posts</code> 数组中添加学习笔记。</p>
+      </div>
+    </article>`;
+}
 
-  reader.innerHTML = `
-    <span class="article-meta">${article.category} · ${article.date}</span>
-    <h3>${article.title}</h3>
-    <p>${article.summary}</p>
-    ${article.content.map((paragraph) => `<p>${paragraph}</p>`).join("")}
-    <h4>检查清单</h4>
-    <ul>${article.checklist.map((item) => `<li>${item}</li>`).join("")}</ul>
-    <div class="tag-row">${article.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
-  `;
+function renderSidebars() {
+  latestPosts.innerHTML = posts.length
+    ? posts.slice(0, 5).map((post) => `
+      <div class="latest-item">
+        <time>${post.date || "未设置日期"}</time>
+        <a href="#${post.id}">${post.title}</a>
+        <small>${post.category || "未分类"}</small>
+      </div>
+    `).join("")
+    : `<p class="empty">暂无最新文章。</p>`;
+
+  const counts = getCategoryCounts();
+  categoryList.innerHTML = Object.keys(counts).length
+    ? Object.entries(counts).map(([category, count]) => `
+      <a href="#latest">
+        ${category}
+        <span>${count}</span>
+      </a>
+    `).join("")
+    : `<p class="empty">暂无分类。</p>`;
+
+  const tags = getTags();
+  tagCloud.innerHTML = tags.length
+    ? tags.map((tag) => `<span>${tag}</span>`).join("")
+    : `<p class="empty">暂无标签。</p>`;
+
+  document.querySelector("#postCount").textContent = String(posts.length);
+  document.querySelector("#pathCount").textContent = String(learningPaths.length);
+  document.querySelector("#categoryCount").textContent = String(Object.keys(counts).length);
+}
+
+function getSearchItems() {
+  return [
+    ...learningPaths.map((path) => ({
+      type: "学习路径",
+      title: path.title,
+      summary: path.next || path.description || "暂无说明",
+      href: "#paths",
+      text: pathSearchText(path)
+    })),
+    ...posts.map((post) => ({
+      type: post.category || "笔记",
+      title: post.title,
+      summary: post.summary || "",
+      href: `#${post.id}`,
+      text: postSearchText(post)
+    }))
+  ];
+}
+
+function renderSearchResults() {
+  const query = searchInput.value.trim();
+  const items = getSearchItems()
+    .map((item) => ({ item, score: fuzzyScore(item.text, query) }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(({ item }) => item);
+
+  searchResults.innerHTML = items.length
+    ? items.map((item) => `
+      <a class="search-result" href="${item.href}" data-search-result>
+        <small>${item.type}</small>
+        <h3>${item.title}</h3>
+        <p>${item.summary}</p>
+      </a>
+    `).join("")
+    : `<p class="empty">暂无可检索内容。添加路径或笔记后会自动出现在这里。</p>`;
+}
+
+function openSearch() {
+  searchPanel.hidden = false;
+  searchInput.value = "";
+  renderSearchResults();
+  searchInput.focus();
+}
+
+function closeSearchPanel() {
+  searchPanel.hidden = true;
 }
 
 function getComments() {
@@ -197,18 +202,6 @@ function getComments() {
 
 function setComments(comments) {
   localStorage.setItem("siteComments", JSON.stringify(comments));
-}
-
-function renderComments() {
-  const comments = getComments();
-  commentList.innerHTML = comments.length
-    ? comments.map((comment) => `
-      <article class="comment-item">
-        <div class="comment-meta">${comment.name} · ${comment.time}</div>
-        <p>${escapeHtml(comment.body)}</p>
-      </article>
-    `).join("")
-    : `<p class="empty">还没有本地评论。你可以先写一条，用来验证评论区交互。</p>`;
 }
 
 function escapeHtml(value) {
@@ -220,24 +213,35 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-filters.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-category]");
-  if (!button) return;
-  state.activeCategory = button.dataset.category;
-  renderFilters();
-  renderArticles();
+function renderComments() {
+  const comments = getComments();
+  commentList.innerHTML = comments.length
+    ? comments.map((comment) => `
+      <article class="comment-item">
+        <strong>${comment.name}</strong>
+        <time>${comment.time}</time>
+        <p>${escapeHtml(comment.body)}</p>
+      </article>
+    `).join("")
+    : `<p class="empty">还没有本地备忘。</p>`;
+}
+
+searchTrigger.addEventListener("click", openSearch);
+closeSearch.addEventListener("click", closeSearchPanel);
+searchInput.addEventListener("input", renderSearchResults);
+
+searchPanel.addEventListener("click", (event) => {
+  if (event.target === searchPanel || event.target.closest("[data-search-result]")) {
+    closeSearchPanel();
+  }
 });
 
-searchInput.addEventListener("input", (event) => {
-  state.query = event.target.value;
-  renderArticles();
-});
-
-articleList.addEventListener("click", (event) => {
-  const card = event.target.closest("[data-article]");
-  if (!card) return;
-  state.selectedArticleId = card.dataset.article;
-  renderArticles();
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeSearchPanel();
+  if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    openSearch();
+  }
 });
 
 commentForm.addEventListener("submit", (event) => {
@@ -265,7 +269,8 @@ commentForm.addEventListener("submit", (event) => {
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
-renderToc();
-renderFilters();
-renderArticles();
+renderPaths();
+renderPosts();
+renderSidebars();
+renderSearchResults();
 renderComments();

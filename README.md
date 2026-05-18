@@ -1,16 +1,17 @@
-# 成何体统 · 计算机技术札记
+# 成何体统 · 个人学习路径
 
-这是一个部署在 Cloudflare Pages 的零构建静态计算机技术网站，主题为“成何体统”。站点用于沉淀计算机基础、Web 工程、部署运维、问题排查和工程复盘。
+这是一个部署在 Cloudflare Pages 的零构建静态个人学习路径网站，主题为“成何体统”。站点保留博客式布局、最新文章、分类、检索和评论能力，但默认不预设与你无关的内容。
 
 ## 功能
 
-- 页面目录导航
-- 技术文章列表
-- 分类筛选
+- 学习路径展示
+- 最新笔记列表
+- 分类和标签自动统计
 - 模糊检索
-- 文章详情阅读区
 - 本地评论区
+- Utterances 公开评论入口
 - 响应式布局
+- 自定义背景图 `assets/site-background.jpg`
 - Cloudflare Pages `_headers` 安全响应头
 
 ## 本地预览
@@ -27,6 +28,14 @@ python -m http.server 8788
 - Build command: 留空
 - Build output directory: `/`
 - Root directory: 仓库根目录
+
+## 内容维护
+
+打开 `script.js`：
+
+- 在 `learningPaths` 数组中添加学习路径。
+- 在 `posts` 数组中添加学习笔记。
+- 分类、最新文章、标签和检索结果会自动生成。
 
 ## 评论说明
 
