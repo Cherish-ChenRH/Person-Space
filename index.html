@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个用于沉淀学习路线、读书笔记、项目复盘和阶段成果的个人学习网站。">
+    <meta name="theme-color" content="#f6efe3">
+    <title>个人学习实验室</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <span class="brand-mark">学</span>
+        <span>个人学习实验室</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#paths">路线</a>
+        <a href="#notes">笔记</a>
+        <a href="#projects">项目</a>
+        <a href="#review">复盘</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Build in public, learn in depth</p>
+          <h1>把零散学习变成可追踪、可复盘、可交付的长期系统。</h1>
+          <p class="hero-text">
+            这里用于记录技术学习路线、读书摘要、项目实践和阶段复盘。目标不是堆链接，而是把每一轮学习转化为可验证的作品与清晰的下一步。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#paths">查看学习路线</a>
+            <a class="button secondary" href="#notes">浏览笔记库</a>
+          </div>
+        </div>
+        <aside class="hero-panel reveal" aria-label="学习仪表盘">
+          <div class="panel-top">
+            <span>本周焦点</span>
+            <strong>Cloudflare Pages / 前端工程化</strong>
+          </div>
+          <div class="metric-grid">
+            <div>
+              <strong>4</strong>
+              <span>学习路径</span>
+            </div>
+            <div>
+              <strong>12</strong>
+              <span>笔记主题</span>
+            </div>
+            <div>
+              <strong>6</strong>
+              <span>实践项目</span>
+            </div>
+          </div>
+          <div class="timeline">
+            <span class="dot"></span>
+            <p>今日任务：补齐一篇项目复盘，并把关键结论迁移到知识卡片。</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section manifesto reveal" aria-label="学习原则">
+        <div>
+          <p class="eyebrow">Learning principles</p>
+          <h2>先构建结构，再积累内容。</h2>
+        </div>
+        <div class="principles">
+          <article>
+            <span>01</span>
+            <h3>主题化</h3>
+            <p>用路线组织知识，避免笔记孤岛。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>项目化</h3>
+            <p>每个阶段至少产出一个可展示作品。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>复盘化</h3>
+            <p>记录判断依据、错误成本和下一步行动。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="paths" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Roadmap</p>
+          <h2>学习路线</h2>
+          <p>按方向拆分目标、资料、练习和交付物。点击卡片可切换完成状态，进度保存在当前浏览器。</p>
+        </div>
+        <div class="path-grid" id="pathGrid"></div>
+      </section>
+
+      <section id="notes" class="section notes-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Knowledge base</p>
+          <h2>笔记库</h2>
+          <p>用于沉淀读书、课程、源码阅读和实践经验。搜索会同时匹配标题、标签和摘要。</p>
+        </div>
+        <div class="toolbar reveal">
+          <label class="search-box">
+            <span>搜索</span>
+            <input id="searchInput" type="search" placeholder="例如：前端、部署、数据结构">
+          </label>
+          <div class="filters" id="filters" aria-label="笔记分类筛选"></div>
+        </div>
+        <div class="note-grid" id="noteGrid"></div>
+      </section>
+
+      <section id="projects" class="section projects">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Output</p>
+          <h2>项目作品</h2>
+          <p>学习最终要落实到交付。这里展示阶段项目、练习成果和可复用模板。</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <span class="status">进行中</span>
+            <h3>个人学习网站</h3>
+            <p>静态部署在 Cloudflare Pages，包含路线、笔记、项目与复盘模块。</p>
+            <a href="#top">当前页面</a>
+          </article>
+          <article class="project-card reveal">
+            <span class="status">计划中</span>
+            <h3>算法练习索引</h3>
+            <p>按题型整理解题模板、复杂度分析和错题复盘。</p>
+            <a href="#review">加入复盘</a>
+          </article>
+          <article class="project-card reveal">
+            <span class="status">计划中</span>
+            <h3>部署手册</h3>
+            <p>记录域名、DNS、Cloudflare Pages、缓存策略和上线检查清单。</p>
+            <a href="#notes">写入笔记</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="review" class="section review reveal">
+        <div>
+          <p class="eyebrow">Weekly review</p>
+          <h2>复盘模板</h2>
+          <p>每周固定回答四个问题，保证学习不是“看过就结束”。</p>
+        </div>
+        <ol class="review-list">
+          <li>本周完成了什么可验证产出？</li>
+          <li>哪个知识点仍然不能独立解释？</li>
+          <li>哪次判断或方法成本最高？</li>
+          <li>下周只保留一个重点，会是什么？</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> 个人学习实验室</p>
+      <a href="#top">回到顶部</a>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
