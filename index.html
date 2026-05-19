@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="成何体统：记录个人计算机学习路径、阶段笔记、分类归档和复盘的个人站点。">
-    <meta name="theme-color" content="#eef1ff">
+    <meta name="theme-color" content="#fdf2f8">
     <title>成何体统 · 个人学习路径</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +17,9 @@
         <a class="avatar-mini" href="#top" aria-label="回到首页">统</a>
         <a href="#top">主页</a>
         <a href="#paths">路径</a>
-        <a href="#latest">最新</a>
-        <a href="#categories">分类</a>
+        <a href="#latest">归档</a>
+        <a href="#categories">标签</a>
+        <a href="#comments">留言</a>
         <a href="#about">关于</a>
       </nav>
       <button class="search-trigger" id="searchTrigger" type="button" aria-label="打开搜索">⌕</button>
@@ -27,20 +28,25 @@
     <main id="top" class="blog-shell">
       <aside class="left-rail">
         <section class="profile-card card" id="about">
-          <div class="avatar-large">成</div>
+          <div class="avatar-wrap">
+            <div class="avatar-large">成</div>
+          </div>
           <h1>成何体统</h1>
-          <p>这里用来记录我的计算机学习路径、阶段笔记、问题复盘和长期积累。</p>
-          <div class="profile-location">Personal Learning Space</div>
+          <p>记录计算机学习路径、阶段笔记和复盘积累。</p>
+          <div class="profile-location">✦ Personal Learning Space</div>
           <div class="profile-stats">
-            <div><strong id="postCount">0</strong><span>笔记</span></div>
-            <div><strong id="pathCount">0</strong><span>路径</span></div>
+            <div><strong id="postCount">0</strong><span>文章</span></div>
             <div><strong id="categoryCount">0</strong><span>分类</span></div>
+            <div><strong id="tagCount">0</strong><span>标签</span></div>
           </div>
           <a class="follow-button" href="#edit-guide">如何添加内容</a>
+          <div class="profile-social">
+            <a href="https://github.com/Cherish-ChenRH" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </section>
 
         <section class="link-card card">
-          <h2>站点说明</h2>
+          <h2>站点导航</h2>
           <ul>
             <li><a href="#paths">学习路径</a><span>roadmap</span></li>
             <li><a href="#latest">最新笔记</a><span>notes</span></li>
@@ -51,12 +57,10 @@
       </aside>
 
       <section class="main-column">
-        <section class="hero-card card">
+        <section class="hero-card">
           <p class="eyebrow">Personal learning path</p>
           <h1>把学习路径写清楚，再慢慢把内容填进去。</h1>
-          <p>
-            这个站点现在保留结构，不预设与你无关的文章内容。后续你只需要在 `script.js` 里添加学习路径、笔记和分类，页面会自动渲染最新文章、分类计数和检索结果。
-          </p>
+          <p>这个站点保留结构，不预设内容。在 <code>script.js</code> 里添加路径、笔记和分类，页面会自动渲染。</p>
           <div class="hero-actions">
             <a href="#paths">查看路径</a>
             <a href="#edit-guide">添加内容</a>
@@ -66,7 +70,7 @@
         <section class="path-card card" id="paths">
           <div class="section-title">
             <h2>学习路径</h2>
-            <p>用于记录阶段目标、当前进度和下一步计划。当前没有预设路径，后续由你自己添加。</p>
+            <p>记录阶段目标、当前进度和下一步计划。</p>
           </div>
           <div id="pathList" class="path-list"></div>
         </section>
@@ -74,25 +78,28 @@
         <section class="post-feed" id="latest" aria-label="最新笔记">
           <div class="section-title">
             <h2>最新笔记</h2>
-            <p>这里会显示你后续添加的学习笔记、复盘和技术记录。</p>
+            <p>学习笔记、复盘和技术记录。</p>
           </div>
           <div id="postList"></div>
         </section>
 
         <section class="guide-card card" id="edit-guide">
           <h2>如何添加内容</h2>
-          <p>打开 `script.js`，在 `learningPaths` 中添加学习路径，在 `posts` 中添加笔记。分类、最新文章和检索都会自动更新。</p>
-          <pre><code>learningPaths.push({
-  title: "计算机网络",
-  status: "进行中",
-  progress: 20,
-  next: "整理 HTTP 缓存笔记"
+          <p>打开 <code>script.js</code>，在 <code>learningPaths</code> 中添加学习路径，在 <code>posts</code> 中添加笔记。分类、标签云和检索都会自动更新。</p>
+          <pre><code>posts.push({
+  id: "note-001",
+  title: "HTTP 缓存机制梳理",
+  date: "2026-05-19",
+  category: "计算机网络",
+  tags: ["HTTP", "缓存"],
+  summary: "整理了强缓存和协商缓存的区别与应用场景。",
+  cover: ""        // 可选：填入封面图路径
 });</code></pre>
         </section>
 
         <section class="comments-card card" id="comments">
           <h2>评论与反馈</h2>
-          <p>公开评论使用 GitHub Issues 驱动的 Utterances。若提示安装应用，请授权 `Cherish-ChenRH/Person-Space` 仓库。</p>
+          <p>公开评论使用 Utterances（GitHub Issues 驱动）。若提示安装应用，请授权 <code>Cherish-ChenRH/Person-Space</code> 仓库。</p>
           <script src="https://utteranc.es/client.js"
             repo="Cherish-ChenRH/Person-Space"
             issue-term="pathname"
@@ -135,14 +142,14 @@
           <h2 id="searchTitle">站内检索</h2>
           <button id="closeSearch" type="button" aria-label="关闭搜索">×</button>
         </div>
-        <input id="searchInput" type="search" placeholder="搜索后续添加的路径、笔记、分类或标签">
+        <input id="searchInput" type="search" placeholder="搜索路径、笔记、分类或标签…">
         <div id="searchResults" class="search-results"></div>
       </div>
     </div>
 
     <footer class="footer">
       <p>© <span id="year"></span> 成何体统 · 个人学习路径</p>
-      <a href="#top">回到顶部</a>
+      <a href="#top">回到顶部 ↑</a>
     </footer>
 
     <script src="script.js" defer></script>

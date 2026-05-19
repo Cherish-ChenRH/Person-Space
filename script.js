@@ -1,7 +1,8 @@
-// Add your own learning paths here.
+// 在这里添加你的学习路径
 const learningPaths = [];
 
-// Add your own notes here. Categories, latest posts, tags and search are generated from this list.
+// 在这里添加你的笔记。分类、标签云和检索都从这里自动生成。
+// 每条笔记可选 cover 字段填入封面图路径（如 "assets/covers/note-001.jpg"）
 const posts = [];
 
 const pathList = document.querySelector("#pathList");
@@ -74,6 +75,20 @@ function getTags() {
   return [...new Set(posts.flatMap((post) => post.tags || []))];
 }
 
+// 根据封面图或分类生成不同的渐变色
+const coverGradients = [
+  "linear-gradient(135deg, #fce7f3, #ede9fe)",
+  "linear-gradient(135deg, #e0f2fe, #ede9fe)",
+  "linear-gradient(135deg, #f0fdf4, #dcfce7)",
+  "linear-gradient(135deg, #fff7ed, #fce7f3)",
+  "linear-gradient(135deg, #fdf4ff, #e0f2fe)",
+  "linear-gradient(135deg, #ede9fe, #fce7f3)",
+];
+
+function coverGradientFor(index) {
+  return coverGradients[index % coverGradients.length];
+}
+
 function renderPaths() {
   pathList.innerHTML = learningPaths.length
     ? learningPaths.map((path) => `
@@ -91,27 +106,38 @@ function renderPaths() {
     `).join("")
     : `<div class="empty-state">
       <h3>还没有学习路径</h3>
-      <p>后续在 <code>script.js</code> 的 <code>learningPaths</code> 数组中添加你的路径。</p>
+      <p>在 <code>script.js</code> 的 <code>learningPaths</code> 数组中添加你的路径。</p>
     </div>`;
 }
 
 function renderPosts() {
   postList.innerHTML = posts.length
-    ? posts.map((post) => `
-      <article class="post-card card" id="${post.id}">
-        <div class="post-meta">
-          <span>${post.date || "未设置日期"}</span>
-          <span>${post.category || "未分类"}</span>
-        </div>
-        <h3><a href="#${post.id}">${post.title}</a></h3>
-        <p class="post-excerpt">${post.summary || ""}</p>
-        <div class="tag-row">${(post.tags || []).map((tag) => `<span>${tag}</span>`).join("")}</div>
-      </article>
-    `).join("")
-    : `<article class="post-card card">
+    ? posts.map((post, index) => {
+      const coverStyle = post.cover
+        ? ""
+        : `style="background: ${coverGradientFor(index)}"`;
+      const coverContent = post.cover
+        ? `<img src="${post.cover}" alt="${post.title}" loading="lazy">`
+        : `<span class="post-cover-placeholder">${(post.category || "文")[0]}</span>`;
+      return `
+        <article class="post-card card" id="${post.id}">
+          <div class="post-cover" ${coverStyle}>${coverContent}</div>
+          <div class="post-body">
+            <div class="post-meta">
+              <span class="post-category-badge">${post.category || "未分类"}</span>
+              <span>${post.date || "未设置日期"}</span>
+            </div>
+            <h3><a href="#${post.id}">${post.title}</a></h3>
+            <p class="post-excerpt">${post.summary || ""}</p>
+            <div class="tag-row">${(post.tags || []).map((tag) => `<span>${tag}</span>`).join("")}</div>
+          </div>
+        </article>
+      `;
+    }).join("")
+    : `<article class="post-card card" style="padding: 22px 24px;">
       <div class="empty-state">
         <h3>还没有笔记</h3>
-        <p>后续在 <code>script.js</code> 的 <code>posts</code> 数组中添加学习笔记。</p>
+        <p>在 <code>script.js</code> 的 <code>posts</code> 数组中添加学习笔记。</p>
       </div>
     </article>`;
 }
@@ -143,8 +169,8 @@ function renderSidebars() {
     : `<p class="empty">暂无标签。</p>`;
 
   document.querySelector("#postCount").textContent = String(posts.length);
-  document.querySelector("#pathCount").textContent = String(learningPaths.length);
   document.querySelector("#categoryCount").textContent = String(Object.keys(counts).length);
+  document.querySelector("#tagCount").textContent = String(tags.length);
 }
 
 function getSearchItems() {
