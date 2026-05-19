@@ -1,0 +1,430 @@
+/* ============================================================
+   成何体统 · 二次元主题自定义样式
+   ============================================================ */
+
+/* ── 全局字体与颜色变量 ── */
+:root {
+  --anm-pink:       #e8619d;
+  --anm-pink-light: #fce4f0;
+  --anm-purple:     #9b72d0;
+  --anm-purple-light: #ede4f8;
+  --anm-lavender:   #c9b8f0;
+  --anm-blue:       #7ab3e0;
+  --anm-text:       #3a3153;
+  --anm-muted:      #8878aa;
+  --anm-card:       rgba(255, 255, 255, 0.92);
+  --anm-radius:     14px;
+  --anm-shadow:     0 4px 24px rgba(155, 114, 208, 0.15);
+  --anm-shadow-hover: 0 8px 32px rgba(232, 97, 157, 0.22);
+}
+
+/* ── 全局背景 ── */
+#page-header {
+  background: linear-gradient(135deg, #c9b8f0 0%, #e8619d 50%, #f0a8c8 100%) !important;
+}
+
+#page-header.post-bg {
+  background: linear-gradient(135deg, #b8a4e8 0%, #d96fa8 60%, #f0c0d8 100%) !important;
+}
+
+/* ── body 背景 ── */
+body {
+  background: linear-gradient(135deg, #f5f0ff 0%, #fff0f8 50%, #f0f5ff 100%);
+  color: var(--anm-text);
+}
+
+/* ── 顶部导航栏 ── */
+#nav {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 2px 20px rgba(155, 114, 208, 0.18) !important;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, var(--anm-purple), var(--anm-pink)) 1;
+}
+
+#nav .site-name {
+  font-weight: 900 !important;
+  background: linear-gradient(135deg, var(--anm-purple), var(--anm-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#nav .menus_item a,
+#nav .menus_item_child a {
+  color: var(--anm-text) !important;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+#nav .menus_item a:hover {
+  color: var(--anm-pink) !important;
+}
+
+/* ── 卡片圆角和阴影 ── */
+.card-widget,
+#recent-posts .recent-post-item,
+.post-card {
+  border-radius: var(--anm-radius) !important;
+  box-shadow: var(--anm-shadow) !important;
+  border: 1px solid rgba(201, 184, 240, 0.25) !important;
+  background: var(--anm-card) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  overflow: hidden;
+}
+
+.card-widget:hover,
+#recent-posts .recent-post-item:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--anm-shadow-hover) !important;
+}
+
+/* ── 侧边栏卡片标题 ── */
+.card-widget .card-content .item-headline,
+.card-widget .card-info-headline {
+  border-left: 4px solid var(--anm-pink) !important;
+  padding-left: 10px;
+  color: var(--anm-text) !important;
+  font-weight: 700;
+}
+
+/* ── 作者卡片 ── */
+#aside-content .card-author .author-content-item {
+  background: linear-gradient(135deg, var(--anm-pink-light), var(--anm-purple-light)) !important;
+  border-radius: 10px !important;
+  padding: 4px 10px !important;
+}
+
+#aside-content .card-author .card-content-avatar {
+  border: 3px solid transparent !important;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--anm-pink), var(--anm-purple)) border-box !important;
+  border-radius: 50% !important;
+}
+
+/* 作者卡片 Follow 按钮 */
+#aside-content .card-author .card-btn-blogroll a,
+#aside-content .card-author .card-btn-follow a {
+  background: linear-gradient(135deg, var(--anm-pink), var(--anm-purple)) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(232, 97, 157, 0.35) !important;
+  transition: opacity 0.2s, transform 0.2s !important;
+}
+
+#aside-content .card-author .card-btn-blogroll a:hover {
+  opacity: 0.85 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 统计数字 */
+#aside-content .card-author .author-info-each-count {
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--anm-purple), var(--anm-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 文章列表卡片 ── */
+#recent-posts .recent-post-item {
+  background: var(--anm-card) !important;
+}
+
+#recent-posts .recent-post-item .post-title a {
+  color: var(--anm-text) !important;
+  font-weight: 700 !important;
+  font-size: 17px !important;
+  transition: color 0.2s;
+}
+
+#recent-posts .recent-post-item .post-title a:hover {
+  color: var(--anm-pink) !important;
+}
+
+#recent-posts .recent-post-item .post-meta-date,
+#recent-posts .recent-post-item .post-meta-categories,
+#recent-posts .recent-post-item .post-meta-wordcount {
+  color: var(--anm-muted) !important;
+  font-size: 12px !important;
+}
+
+/* 分类标签 badge */
+#recent-posts .recent-post-item .post-meta-categories a {
+  background: var(--anm-pink-light) !important;
+  border-radius: 999px !important;
+  color: var(--anm-pink) !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  padding: 2px 10px !important;
+}
+
+/* ── 文章封面图圆角 ── */
+#recent-posts .recent-post-item .post-bg {
+  border-radius: var(--anm-radius) var(--anm-radius) 0 0 !important;
+}
+
+/* ── 标签云 ── */
+#aside-content .card-tags .tags-box a {
+  background: var(--anm-purple-light) !important;
+  border: 1px solid var(--anm-lavender) !important;
+  border-radius: 999px !important;
+  color: var(--anm-purple) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 3px 12px !important;
+  transition: background 0.2s, color 0.2s !important;
+}
+
+#aside-content .card-tags .tags-box a:hover {
+  background: var(--anm-lavender) !important;
+  color: white !important;
+}
+
+/* ── 分类列表 ── */
+#aside-content .card-categories .category-list-item-name {
+  color: var(--anm-text) !important;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+#aside-content .card-categories .category-list-item:hover .category-list-item-name {
+  color: var(--anm-pink) !important;
+}
+
+#aside-content .card-categories .category-list-item-count {
+  background: var(--anm-pink-light) !important;
+  border-radius: 999px !important;
+  color: var(--anm-pink) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 1px 8px !important;
+}
+
+/* ── 归档列表 ── */
+#aside-content .card-archives .archive-list-item-name {
+  color: var(--anm-text) !important;
+}
+
+#aside-content .card-archives .archive-list-item:hover .archive-list-item-name {
+  color: var(--anm-purple) !important;
+}
+
+#aside-content .card-archives .archive-list-item-count {
+  background: var(--anm-purple-light) !important;
+  color: var(--anm-purple) !important;
+  border-radius: 999px !important;
+  padding: 1px 8px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+/* ── 公告卡片 ── */
+#aside-content .card-announcement .announcement-content {
+  background: linear-gradient(135deg, var(--anm-pink-light), var(--anm-purple-light)) !important;
+  border-radius: 10px !important;
+  border-left: 3px solid var(--anm-pink) !important;
+  color: var(--anm-text) !important;
+  font-size: 13px !important;
+  padding: 10px 14px !important;
+}
+
+/* ── 最新文章列表 ── */
+#aside-content .card-recent-post .recent-post-list .recent-post-item .recent-post-info .recent-post-title a {
+  color: var(--anm-text) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+
+#aside-content .card-recent-post .recent-post-list .recent-post-item:hover .recent-post-title a {
+  color: var(--anm-pink) !important;
+}
+
+#aside-content .card-recent-post .recent-post-list .recent-post-item .recent-post-time {
+  color: var(--anm-muted) !important;
+  font-size: 11px !important;
+}
+
+/* ── 文章正文 ── */
+#post-info .post-title {
+  font-weight: 900 !important;
+  line-height: 1.3 !important;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  position: relative;
+  color: var(--anm-text) !important;
+}
+
+.post-content h2::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 1em;
+  background: linear-gradient(135deg, var(--anm-pink), var(--anm-purple));
+  border-radius: 3px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.post-content a {
+  color: var(--anm-pink) !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 97, 157, 0.3);
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.post-content a:hover {
+  color: var(--anm-purple) !important;
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--anm-pink) !important;
+  background: var(--anm-pink-light) !important;
+  border-radius: 0 10px 10px 0 !important;
+  color: var(--anm-muted) !important;
+}
+
+/* ── 分页按钮 ── */
+.pagination .page-number.current,
+.pagination .prev,
+.pagination .next {
+  background: linear-gradient(135deg, var(--anm-pink), var(--anm-purple)) !important;
+  border-color: transparent !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+/* ── 搜索框 ── */
+#local-search .local-search-popup .search-dialog {
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(155, 114, 208, 0.25) !important;
+}
+
+/* ── 右侧按钮 ── */
+#rightside .rightside-item i {
+  color: var(--anm-purple) !important;
+  transition: color 0.2s;
+}
+
+#rightside .rightside-item:hover i {
+  color: var(--anm-pink) !important;
+}
+
+/* ── 首页 banner 文字 ── */
+#site-info .site-title {
+  font-weight: 900 !important;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+#site-info .site-subtitle {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 15px !important;
+  letter-spacing: 0.08em;
+}
+
+/* ── 页脚 ── */
+#footer {
+  background: linear-gradient(135deg, rgba(201, 184, 240, 0.2), rgba(232, 97, 157, 0.15)) !important;
+  border-top: 1px solid rgba(201, 184, 240, 0.3) !important;
+  color: var(--anm-muted) !important;
+}
+
+#footer a {
+  color: var(--anm-purple) !important;
+  transition: color 0.2s;
+}
+
+#footer a:hover {
+  color: var(--anm-pink) !important;
+}
+
+/* ── 侧边栏图标颜色 ── */
+#aside-content .item-headline i {
+  color: var(--anm-pink) !important;
+}
+
+/* ── 网站信息卡片数字 ── */
+#aside-content .card-webinfo .webinfo-item-count {
+  color: var(--anm-purple) !important;
+  font-weight: 700;
+}
+
+/* ── 滚动条 ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--anm-purple-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--anm-pink), var(--anm-purple));
+  border-radius: 999px;
+}
+
+/* ── 文字选中高亮 ── */
+::selection {
+  background: var(--anm-pink-light);
+  color: var(--anm-pink);
+}
+
+/* ── 侧边栏宽度平衡 ── */
+@media screen and (min-width: 1200px) {
+  #aside-content {
+    width: 300px !important;
+  }
+
+  .layout:not([class*="hide"]) #aside-content {
+    flex: 0 0 300px !important;
+    max-width: 300px !important;
+  }
+}
+
+/* ── 主内容区 ── */
+#content-inner {
+  background: transparent !important;
+}
+
+/* 让 main 内容和侧边栏之间有适当间距 */
+.layout {
+  gap: 20px !important;
+}
+
+/* ── 卡片标题分割线 ── */
+.card-widget .card-content hr {
+  border-color: rgba(201, 184, 240, 0.4) !important;
+}
+
+/* ── 加载动画颜色 ── */
+#loading-box .loading-bg {
+  background: linear-gradient(135deg, var(--anm-purple-light), var(--anm-pink-light)) !important;
+}
+
+/* ── 暗色模式适配 ── */
+[data-theme="dark"] {
+  --anm-card: rgba(30, 22, 50, 0.92);
+  --anm-text: #e8deff;
+  --anm-muted: #a890cc;
+  --anm-pink-light: rgba(232, 97, 157, 0.15);
+  --anm-purple-light: rgba(155, 114, 208, 0.15);
+}
+
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, #1a1030 0%, #240d20 50%, #12182a 100%);
+}
+
+[data-theme="dark"] #nav {
+  background: rgba(20, 14, 36, 0.92) !important;
+}
