@@ -116,23 +116,19 @@ error_404:
 post_meta:
   # Home Page
   page:
-    # Choose: created / updated / both
     date_type: created
-    # Choose: date / relative
-    date_format: date
-    categories: true
-    tags: false
-    label: true
-  post:
-    # Choose: left / center
-    position: left
-    # Choose: created / updated / both
-    date_type: both
-    # Choose: date / relative
     date_format: date
     categories: true
     tags: true
     label: true
+  post:
+    position: left
+    date_type: both
+    date_format: date
+    categories: true
+    tags: true
+    label: true
+
 
 # --------------------------------------
 # Index page settings
@@ -147,22 +143,13 @@ index_top_img_height:
 
 # The subtitle on homepage
 subtitle:
-  enable: false
-  # Typewriter Effect
+  enable: true
   effect: true
-  # Customize typed.js
-  # https://github.com/mattboldt/typed.js/#customization
   typed_option:
-  # Source - Call the third-party service API (Chinese only)
-  # It will show the source first, then show the content of sub
-  # Choose: false/1/2/3
-  # false - disable the function
-  # 1 - hitokoto.cn
-  # 2 - https://api.aa1.cn/doc/yiyan.html
-  # 3 - jinrishici.com
   source: false
-  # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub:
+    - 把零散输入整理成体系，把阶段经验沉淀成笔记。
+    - Build in public · Learn in depth · Ship it.
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -172,7 +159,7 @@ subtitle:
 # 5: Info displayed on the cover
 # 6: Masonry layout - Cover on top, info on the bottom
 # 7: Masonry layout - Info displayed on the cover
-index_layout: 3
+index_layout: 1
 
 # Display the article introduction on homepage
 # 1: description
@@ -191,16 +178,15 @@ index_post_content:
 toc:
   post: true
   page: false
-  number: true
-  expand: false
-  # Only for post
+  number: false
+  expand: true
   style_simple: false
   scroll_percent: true
 
 post_copyright:
   enable: true
   decode: false
-  author_href:
+  author_href: https://github.com/Cherish-ChenRH
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
@@ -219,10 +205,8 @@ reward:
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:
-  enable: false
-  # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
-  # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
-  url:
+  enable: true
+  url: https://github.com/Cherish-ChenRH/Person-Space/edit/main/source/
 
 # Related Articles
 related_post:
@@ -427,12 +411,9 @@ copy:
 
 # Need to install the hexo-wordcount plugin
 wordcount:
-  enable: false
-  # Display the word count of the article in post meta
+  enable: true
   post_wordcount: true
-  # Display the time to read the article in post meta
   min2read: true
-  # Display the total word count of the website in aside's webinfo
   total_wordcount: true
 
 # Busuanzi count for PV / UV in site

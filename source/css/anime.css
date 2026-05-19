@@ -412,6 +412,285 @@ body {
   background: linear-gradient(135deg, var(--anm-purple-light), var(--anm-pink-light)) !important;
 }
 
+/* ============================================================
+   文章详情页 · 参考 cnkirito.moe 风格
+   ============================================================ */
+
+/* ── 文章头部信息区 ── */
+#post-info {
+  padding: 24px 28px 20px !important;
+  background: var(--anm-card) !important;
+  border-radius: 0 0 var(--anm-radius) var(--anm-radius) !important;
+}
+
+#post-info .post-title {
+  font-size: 26px !important;
+  font-weight: 900 !important;
+  line-height: 1.4 !important;
+  color: var(--anm-text) !important;
+  margin-bottom: 14px !important;
+}
+
+/* 文章元信息行（日期 / 分类 / 字数 / 阅读时长） */
+#post-info .post-meta-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--anm-muted) !important;
+}
+
+#post-info .post-meta-date,
+#post-info .post-meta-categories,
+#post-info .post-meta-tags,
+#post-info .post-meta-wordcount {
+  color: var(--anm-muted) !important;
+  font-size: 12px !important;
+}
+
+#post-info .post-meta-categories a {
+  background: var(--anm-pink-light) !important;
+  border-radius: 999px !important;
+  color: var(--anm-pink) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 2px 10px !important;
+}
+
+/* ── 文章正文容器 ── */
+#article-container {
+  background: var(--anm-card) !important;
+  border-radius: var(--anm-radius) !important;
+  box-shadow: var(--anm-shadow) !important;
+  font-size: 15px !important;
+  line-height: 1.9 !important;
+  padding: 28px 36px !important;
+  color: var(--anm-text) !important;
+}
+
+/* ── 正文标题层级 ── */
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4 {
+  color: var(--anm-text) !important;
+  font-weight: 700 !important;
+  margin: 1.6em 0 0.6em !important;
+  line-height: 1.4 !important;
+}
+
+#article-container h1 { font-size: 22px !important; }
+#article-container h2 { font-size: 19px !important; }
+#article-container h3 { font-size: 17px !important; }
+
+#article-container h2 {
+  border-bottom: 2px solid var(--anm-purple-light) !important;
+  padding-bottom: 8px !important;
+}
+
+#article-container h2::before {
+  background: linear-gradient(135deg, var(--anm-pink), var(--anm-purple));
+  border-radius: 3px;
+  content: "";
+  display: inline-block;
+  height: 18px;
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 4px;
+}
+
+/* ── 正文段落 ── */
+#article-container p {
+  color: var(--anm-text) !important;
+  line-height: 1.9 !important;
+  margin: 0.8em 0 !important;
+}
+
+/* ── 正文链接 ── */
+#article-container a {
+  color: var(--anm-purple) !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(155, 114, 208, 0.3);
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+#article-container a:hover {
+  color: var(--anm-pink) !important;
+}
+
+/* ── 引用块 ── */
+#article-container blockquote {
+  background: linear-gradient(135deg, var(--anm-pink-light), var(--anm-purple-light)) !important;
+  border-left: 4px solid var(--anm-pink) !important;
+  border-radius: 0 10px 10px 0 !important;
+  color: var(--anm-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+  margin: 1.2em 0 !important;
+  padding: 14px 18px !important;
+}
+
+/* ── 行内代码 ── */
+#article-container code:not([class]) {
+  background: var(--anm-pink-light) !important;
+  border-radius: 5px !important;
+  color: var(--anm-pink) !important;
+  font-size: 13px !important;
+  padding: 2px 7px !important;
+}
+
+/* ── 代码块 ── */
+#article-container figure.highlight,
+#article-container .code-container {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(155, 114, 208, 0.12) !important;
+  margin: 1.4em 0 !important;
+  overflow: hidden !important;
+}
+
+/* ── 表格 ── */
+#article-container table {
+  border-collapse: collapse !important;
+  border-radius: 10px !important;
+  margin: 1.2em 0 !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  box-shadow: var(--anm-shadow) !important;
+}
+
+#article-container table th {
+  background: linear-gradient(135deg, var(--anm-purple-light), var(--anm-pink-light)) !important;
+  color: var(--anm-text) !important;
+  font-weight: 700 !important;
+  padding: 10px 14px !important;
+  text-align: left !important;
+}
+
+#article-container table td {
+  border-top: 1px solid rgba(201, 184, 240, 0.3) !important;
+  padding: 9px 14px !important;
+}
+
+#article-container table tr:nth-child(even) td {
+  background: var(--anm-purple-light) !important;
+}
+
+/* ── 图片 ── */
+#article-container img {
+  border-radius: 10px !important;
+  box-shadow: var(--anm-shadow) !important;
+  max-width: 100% !important;
+}
+
+/* ── 分割线 ── */
+#article-container hr {
+  border: none !important;
+  border-top: 2px dashed var(--anm-purple-light) !important;
+  margin: 2em 0 !important;
+}
+
+/* ── 无序/有序列表 ── */
+#article-container ul li::marker {
+  color: var(--anm-pink) !important;
+}
+
+#article-container ol li::marker {
+  color: var(--anm-purple) !important;
+  font-weight: 700 !important;
+}
+
+/* ── TOC 目录卡片 ── */
+#aside-content #card-toc {
+  border-radius: var(--anm-radius) !important;
+  box-shadow: var(--anm-shadow) !important;
+  border: 1px solid rgba(201, 184, 240, 0.25) !important;
+  position: sticky !important;
+  top: 70px !important;
+}
+
+#aside-content #card-toc .toc-content {
+  max-height: calc(100vh - 120px) !important;
+  overflow-y: auto !important;
+}
+
+#aside-content #card-toc .toc-content::-webkit-scrollbar {
+  width: 3px !important;
+}
+
+.toc-child .toc-item-text {
+  color: var(--anm-muted) !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  transition: color 0.2s !important;
+}
+
+.toc-item.active .toc-item-text,
+.toc-child .toc-item.active .toc-item-text {
+  color: var(--anm-pink) !important;
+  font-weight: 600 !important;
+}
+
+/* TOC 激活指示线 */
+.toc-item.active::before {
+  background: var(--anm-pink) !important;
+}
+
+/* ── 文章版权卡片 ── */
+#post-copyright {
+  background: linear-gradient(135deg, var(--anm-pink-light), var(--anm-purple-light)) !important;
+  border: 1px solid rgba(232, 97, 157, 0.2) !important;
+  border-radius: var(--anm-radius) !important;
+  font-size: 13px !important;
+}
+
+/* ── 相关文章 ── */
+#related-posts .relatedPosts-list .relatedPosts-item {
+  border-radius: var(--anm-radius) !important;
+  box-shadow: var(--anm-shadow) !important;
+  overflow: hidden !important;
+  transition: transform 0.25s, box-shadow 0.25s !important;
+}
+
+#related-posts .relatedPosts-list .relatedPosts-item:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--anm-shadow-hover) !important;
+}
+
+#related-posts .relatedPosts-list .relatedPosts-item .relatedPosts-info .relatedPosts-title a {
+  color: var(--anm-text) !important;
+  font-weight: 600 !important;
+  transition: color 0.2s !important;
+}
+
+#related-posts .relatedPosts-list .relatedPosts-item:hover .relatedPosts-title a {
+  color: var(--anm-pink) !important;
+}
+
+/* ── 首页文章卡片（layout 1 精修） ── */
+#recent-posts .recent-post-item .post-content {
+  padding: 18px 22px !important;
+}
+
+#recent-posts .recent-post-item .post-title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 10px !important;
+}
+
+#recent-posts .recent-post-item .post-excerpt {
+  color: var(--anm-muted) !important;
+  font-size: 13px !important;
+  line-height: 1.75 !important;
+}
+
+/* 封面图比例固定 */
+#recent-posts .recent-post-item .post-cover {
+  border-radius: var(--anm-radius) var(--anm-radius) 0 0 !important;
+}
+
 /* ── 暗色模式适配 ── */
 [data-theme="dark"] {
   --anm-card: rgba(30, 22, 50, 0.92);
